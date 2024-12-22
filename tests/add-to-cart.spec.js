@@ -7,7 +7,7 @@ const {
   CART_PAGE,
 } = require("../selectors/pageLocators");
 
-test.describe("Add Product to Cart on export.rsdelivers.com", () => {
+test.describe("Add Product to Cart", () => {
   test.beforeEach(async ({ page }) => {
     await test.step("Open homepage and accept cookies", async () => {
       await page.goto("https://export.rsdelivers.com/");
@@ -16,7 +16,7 @@ test.describe("Add Product to Cart on export.rsdelivers.com", () => {
     });
   });
 
-  test("Add a product to the cart and verify it in the cart", async ({
+  test("Add a product to the cart from listing and verify it in the cart", async ({
     page,
   }) => {
     await test.step("Navigate to the Battery Charger Leads category", async () => {
@@ -35,9 +35,7 @@ test.describe("Add Product to Cart on export.rsdelivers.com", () => {
     await test.step("Verify the product in the cart", async () => {
       await expect(page.locator(LISTING.viewBasketButton)).toBeVisible();
       await page.locator(LISTING.viewBasketButton).click();
-
       await expect(page).toHaveURL(/.*\/cart/);
-
       const productInCart = page.locator(
         CART_PAGE.productInCart(
           "Lovato BCGX00 Battery Charger for Lead-acid Batteries Charger"

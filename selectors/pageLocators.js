@@ -5,6 +5,9 @@ import {
   idSelector,
   buttonWithTextSelector,
   linkWithHrefAndText,
+  twoClassesSelector,
+  linkWithTextSelector,
+  tableCellSelector,
 } from "./cssSelectors";
 
 export const HOMEPAGE = {
@@ -40,13 +43,28 @@ export const LISTING = {
 };
 
 export const CART_PAGE = {
-  productInCart: (productName) =>
-    linkWithHrefAndText(
-      "/product/lovato/bcgx00/lovato-bcgx00-battery-charger-for-lead-acid/2483640",
-      productName
-    ),
+  productInCart: (productName) => linkWithTextSelector(productName),
   removeFromCartButton: partialClassSelector(
     "product-item-component_bin-button"
   ),
   emptyCartText: partialClassSelector("empty-basket-component_extra-info"),
+};
+export const PDP = {
+  addToCartButton: twoClassesSelector(
+    "add-to-basket-cta-component_add",
+    "button-component-module_default"
+  ),
+  quantityDropdown: twoClassesSelector(
+    "dropdown-component-module_dropdown-wrapper",
+    "dropdown-component-module"
+  ),
+  dropdownOption: (quantity) =>
+    partialClassBlockWithText("add-to-basket-cta-component_qty-opt", quantity),
+  unitPriceElement: partialClassSelector(
+    "add-to-basket-cta-component_unit-price"
+  ),
+  tableCell: (rowText, columnIndex) => tableCellSelector(rowText, columnIndex),
+  addToPartsListButton: partialClassSelector(
+    "add-to-basket-cta-component_add-parts"
+  ),
 };
